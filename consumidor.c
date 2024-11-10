@@ -1,0 +1,45 @@
+/***
+ * 
+ * Sis Ops - File System
+ * 
+ */
+
+#include "archivo.h"
+#include "scripts.h"
+#include "buffer.h"
+
+#include "productor.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <iostream>
+
+
+
+
+using namespace std;
+
+typedef struct consumidor{
+	buffer * buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
+	script * consumidor; // Array circular con los scripts a colocar en buffer de memoria compartida
+	lista_archivos * archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
+    int tam;
+    bool dormido;
+} consumidor;
+
+
+
+void consumidor(TIPO args){
+
+    // duerme hasta que productor lo despierte con mas scripts
+    // cuando hay scripts los lee del buffer circular de memoria compartida
+    // hago exec de cada linea del script
+    // envio los resultados a un archivo de log
+    // cada archivo de log se nombra con el identificador del proceso y hora de ejecucion.
+    // cuando no hay mas scripts para leer (consumidor == productor - 1)
+    // se hecha a dormir.
+
+}
+
+
