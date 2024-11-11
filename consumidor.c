@@ -5,7 +5,7 @@
  */
 
 #include "archivo.h"
-#include "scripts.h"
+#include "script.h"
 #include "buffer.h"
 
 #include "productor.h"
@@ -20,17 +20,17 @@
 
 using namespace std;
 
-typedef struct consumidor{
-	buffer * buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
-	script * consumidor; // Array circular con los scripts a colocar en buffer de memoria compartida
-	lista_archivos * archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
+struct consumidor{
+	Buffer buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
+	Script consumidor; // Array circular con los scripts a colocar en buffer de memoria compartida
+	Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
     int tam;
     bool dormido;
-} consumidor;
+};
 
 
 
-void consumidor(TIPO args){
+void CrearConsumidor(){
 
     // duerme hasta que productor lo despierte con mas scripts
     // cuando hay scripts los lee del buffer circular de memoria compartida

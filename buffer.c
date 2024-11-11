@@ -5,7 +5,8 @@
  */
 
 #include "archivo.h"
-#include "scripts.h"
+#include "script.h"
+#include "buffer.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,9 +14,9 @@
 
 
 
-typedef struct buffer{
-	script * scripts;
+struct buffer{
+	Script scripts;
     int tam;
-} buffer;
+};
 
 

@@ -4,7 +4,7 @@
 
 
 #include "archivo.h"
-#include "scripts.h"
+#include "script.h"
 #include "buffer.h"
 
 
@@ -13,11 +13,21 @@
 #include <string.h>
 
 
+typedef struct productor* Productor;
 
-void CrearProductor(TIPO args);
 
-void ActualizarBufferProductor(TIPO args);
 
-void IsEmptyProductor(TIPO args);
 
-void Ultimo(TIPO args);
+
+Productor CrearProductor();
+
+void ActualizarBufferProductor();
+
+void IsEmptyProductor();
+
+void Ultimo();
+
+
+
+
+#endif // PRODUCTOR_H

@@ -21,9 +21,9 @@
 using namespace std;
 
 typedef struct fabrica{
-	productor * productor;
-	consumidor * consumidor;
-} fabrica;
+	Productor productor;
+	Consumidor consumidor;
+} Fabrica;
 
 
 
@@ -46,6 +46,7 @@ int main(){
 */
 
 
+    return 0;
 
 }
 

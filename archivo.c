@@ -4,35 +4,44 @@
  * 
  */
 
+
+//#include "cargo.h"
+#include "archivo.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+//#include <cstdio>
+
+#include <fcntl.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
 
 
-
-typedef struct archivo{
+struct archivo{
 	char * nombreArch;
-} archivo;
+};
 
 
 
 
-typedef struct lista_archivos{
-	archivo * nombreArch;
-	lista_archivos * sig;
-	lista_archivos * ant;
-} archivo;
+struct lista_archivos{
+	Archivo nombreArch;
+	Lista_archivos sig;
+	Lista_archivos ant;
+};
 
 
 
 
 
 
-FILE *abro_archivo(archivo){
+FILE *abro_archivo(Archivo a){
     FILE *fp;
     char *line = NULL;
-    fp = fopen(archivo->nombreArch, "r");
+    fp = fopen(a->nombreArch, "r");
     if (fp == NULL)
         exit(EXIT_FAILURE);
     return fp;
@@ -45,9 +54,9 @@ char *leo_linea(int n){
     int cont=0;
 
     while (cont < n){
-       if ((read = getline(&line, &len, fp)) != -1) {
+       //if ((read = getline(&line, &len, fp)) != -1) {
             cont++;
-        }
+        //}
     } 
     return line;
 }
@@ -95,9 +104,9 @@ Lista_archivos CrearListaArchivos(){
 }
 
 
-Lista_archivos IsEmptyListaArchivos(Lista_archivos lista_arch){
+bool IsEmptyListaArchivos(Lista_archivos lista_arch){
 // Indica si la lista esta vacia
-    return lista_arch == NULL;
+    return (lista_arch == NULL);
 }
 
 
@@ -120,7 +129,7 @@ Lista_archivos InsertarArchivoListaArchivos(Lista_archivos lista_arch, char *nom
 // Inserta un nombre de archivo como ultimo en lista de archivos
 // Actualizar puntero a ultimo. Ver tamaño, etc.
 
-
+    return lista_arch;
 
 }
 
@@ -128,5 +137,7 @@ Lista_archivos InsertarArchivoListaArchivos(Lista_archivos lista_arch, char *nom
 Lista_archivos EliminarArchivoListaArchivos(Lista_archivos lista_arch, char *nom_archivo){
 // Elimina un nombre de archivo de la lista de archivos
 // Actualizar punteros. Ver tamaño, etc.
+
+    return lista_arch;
 }
 

@@ -5,9 +5,10 @@
  */
 
 #include "archivo.h"
-#include "scripts.h"
+#include "script.h"
 #include "buffer.h"
 
+#include "productor.h"
 #include "consumidor.h"
 
 #include <stdio.h>
@@ -17,17 +18,18 @@
 
 using namespace std;
 
-typedef struct productor{
-	buffer * buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
-	script * productor; // Array circular con los scripts a colocar en buffer de memoria compartida
-	lista_archivos * archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
+
+struct productor{
+	Buffer buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
+	Script productor; // Array circular con los scripts a colocar en buffer de memoria compartida
+	Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
     int tam;
-    bool dormido;
-} productor;
+    //bool dormido;
+};
 
 
 
-
+/*
 
 void productor(TIPO args){
 
@@ -65,12 +67,24 @@ void productor(TIPO args){
     int shm_fd,pid,i;
     int *ptr;
 
-    /* create the shared memory segment */
+    // create the shared memory segment
     shm_fd = shm_open("name", O_CREAT | O_RDWR, 0666);
 
-    /* configure the size of the shared memory segment */
+    // configure the size of the shared memory segment
     ftruncate(shm_fd,SIZE);
 
     // coloco buffer en memoria compartida
 
 }
+
+*/
+
+
+
+Productor CrearProductor();
+
+void ActualizarBufferProductor();
+
+void IsEmptyProductor();
+
+void Ultimo();

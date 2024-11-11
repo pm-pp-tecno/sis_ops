@@ -5,6 +5,7 @@
  */
 
 #include "archivo.h"
+#include "script.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,21 +13,21 @@
 
 
 // 1 Script = 1 linea ejecutable de codigo
-typedef struct script{
+struct script{
 	char * linea;
-} script;
+};
 
 
 // 1 lista de lineas ejecutables de codigo
-typedef struct lista_scripts{
-	script * linea;
-    lista_scripts * sig;
-    lista_scripts * ant;
-} script;
+struct lista_scripts{
+	Script script;
+    Lista_scripts sig;
+    Lista_scripts ant;
+};
 
 
 
-script InsertarScript (lista_scripts lista, script s){
+Script InsertarScript (Lista_scripts lista, Script s){
 
 }
 
