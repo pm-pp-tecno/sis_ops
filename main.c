@@ -4,6 +4,7 @@
  * 
  */
 
+#include "script.h"
 #include "productor.h"
 #include "consumidor.h"
 
@@ -33,7 +34,7 @@ int main(){
 
     // numero del array del buffer en el que se encuentra cada proceso?
     int productor, consumidores;
-    Fabrica fabrica;
+    //Fabrica fabrica;
 
 /*
     while (productor < consumidores){
@@ -44,6 +45,23 @@ int main(){
 
     
 */
+
+    Lista_scripts listado_scripts;
+
+    listado_scripts = ArmarListaScripts();
+
+
+
+    Lista_scripts iter = listado_scripts;
+    int cont = 0;
+
+    while (!IsEmpty(iter)) {
+        Script auxiS = ObtenerScript(iter);
+        printf("Contador: %d: ", cont);
+        fprintf(stdout,"%s\n",ObtenerLinea(auxiS));
+        iter = Tail(iter);
+        cont++;
+    }
 
 
     return 0;

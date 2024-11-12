@@ -47,6 +47,7 @@ FILE *abro_archivo(Archivo a){
     return fp;
 }
 
+/*
 char *leo_linea(int n){
     char * line = NULL;
     size_t len = 0;
@@ -60,41 +61,27 @@ char *leo_linea(int n){
     } 
     return line;
 }
-
-
-/*
-// escribir linea{
-
-
-    char nom_arch[14], str_inodo[8], tipo_arch[2];
-    int nro_inodo;
-
-    // a es de append al final del archivo
-    FILE *f=fopen("datos.txt","a");
-    if (f==NULL){
-        fprintf(stderr, "Error de archivo\n");
-        exit(0);
-    }
-
-    fputs("Ingrese nombre, inodo y tipo. ", stdout);
-    fgets(nom_arch, 14, stdin);
-    fgets(str_inodo, 8, stdin);
-    fgets(tipo_arch, 2, stdin);
-    nro_inodo=atoi(str_inodo);
-    fputs(nom_arch, f);
-    fputs(tipo_arch, f);
-    fputs(str_inodo, f);
-    fclose(f);
-
-}
-
-
 */
 
 
 
+Archivo CrearArchivo(){
+// Genera una lista de archivos vacia
+    return NULL;
+}
 
 
+
+Archivo LeerArchivo(){
+// Genera una lista de archivos vacia
+    //Archivo a = new(archivo);
+    //a->nombreArch = "datos.txt";
+
+    //FILE *fp;
+    //fp = abro_archivo(Archivo a);
+
+
+}
 
 
 

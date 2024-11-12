@@ -17,12 +17,14 @@ typedef struct lista_archivos* Lista_archivos;
 FILE *abro_archivo(Archivo a);
 
 
-char *leo_linea(int n);
+//char *leo_linea(int n);
 
 
 
 
+Archivo CrearArchivo();
 
+Archivo LeerArchivo();
 
 
 Lista_archivos CrearListaArchivos();
