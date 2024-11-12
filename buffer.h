@@ -9,5 +9,10 @@
 typedef struct buffer* Buffer;
 
 
+int ColocarScriptsBuffer(Lista_scripts lista);
+
+int LeerScriptsBuffer(int desde, int hasta);
+
+
 
 #endif // BUFFER_H

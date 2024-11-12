@@ -88,3 +88,8 @@ void ActualizarBufferProductor();
 void IsEmptyProductor();
 
 void Ultimo();
+
+
+bool ColocarScripts(Lista_scripts lista);
+// Coloca los scripts de lista en buffer circular array
+// Llama a funcion ColocarScriptsBuffer(Lista_scripts lista) de Buffer.c

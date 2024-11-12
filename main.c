@@ -43,14 +43,11 @@ int main(){
     
     }
 
-    
 */
 
     Lista_scripts listado_scripts;
 
     listado_scripts = ArmarListaScripts();
-
-
 
     Lista_scripts iter = listado_scripts;
     int cont = 0;
@@ -62,6 +59,22 @@ int main(){
         iter = Tail(iter);
         cont++;
     }
+
+    // Hacer fork()? y si es padre que sea un productor y un hijo consumidor? creo que no
+    // Crear un productor: Productor p = CrearProductor();
+    // ver si hay archivos por leer
+    // chequear semaforos entre productor y consumidor
+    // bool ColocarScripts(Lista_scripts lista) en productor.c
+    // duerme el productor y depierto consumidor
+    // creo el consumidor
+    // consumidor busca celdas vacias, hasta que no haya mas celdas vacias
+    // ahi deberia ser desde donde tiene que empezar a leer
+    // lee MAX_BUFFER / 2 como maximo ponele. O sino 10 y ahi hay que crear mas consumidores
+    // ejecuta los scripts (todo en consumidor.c)
+    // con cada script que ejecuta, guarda en un archivo la salida, con cierto nombre. 
+    // liberar memoria de semaforos
+    // etc.
+
 
 
     return 0;

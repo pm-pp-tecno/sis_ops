@@ -28,6 +28,6 @@ void IsEmptyProductor();
 void Ultimo();
 
 
-
+bool ColocarScripts(Lista_scripts lista);
 
 #endif // PRODUCTOR_H
