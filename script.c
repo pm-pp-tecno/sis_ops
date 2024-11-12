@@ -37,7 +37,7 @@ Lista_scripts ArmarListaScripts(){
     char nom_arch[256], str_inodo[8], tipo_arch[2];
     int nro_inodo, cont = 0;
     //Script script;
-    Lista_scripts listado_scripts, auxListado = NULL;
+    Lista_scripts listado_scripts = NULL, auxListado = NULL;
 
     FILE *f=fopen("../datos.txt","r");
     if (f==NULL){
