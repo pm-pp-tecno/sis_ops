@@ -104,10 +104,11 @@ void ActualizarBufferProductor(Productor &prod, Lista_scripts listado_scripts){
 	//printf("Productor: %s\n", fechaHora);
     printf("Productor.\n");
     int contador = 0;
+    /*
     while (listado_scripts != NULL && contador < MAX_SCRIPTS){
         //prod->buffer
         // InsertarScriptBuffer(Buffer prod->buffer, Script s); Funcion en buffer
-    }
+    }*/
 }
 
 void IsEmptyProductor();
