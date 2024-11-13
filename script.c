@@ -44,7 +44,7 @@ Lista_scripts ArmarListaScripts(){
     //Script script;
     Lista_scripts listado_scripts = NULL, auxListado = NULL;
 
-    FILE *f=fopen("../datos.txt","r");
+    FILE *f=fopen("./datos.txt","r");
     if (f==NULL){
         fprintf(stderr, "Error de archivo\n");
         exit(0);
