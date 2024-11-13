@@ -1,5 +1,5 @@
 all: main.o productor.o consumidor.o archivo.o script.o buffer.o
-	g++ -o programa main.o productor.o consumidor.o archivo.o script.o buffer.o
+	g++ -o programa main.o productor.o consumidor.o archivo.o script.o buffer.o -lrt -pthread
 main.o: main.c productor.h consumidor.h
 	g++ -c main.c
 productor.o: archivo.h script.h buffer.h productor.h
