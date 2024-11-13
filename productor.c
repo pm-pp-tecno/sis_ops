@@ -4,6 +4,8 @@
  * 
  */
 
+#define MAX_SCRIPTS 10
+
 #include "archivo.h"
 #include "script.h"
 #include "buffer.h"
@@ -21,9 +23,10 @@ using namespace std;
 
 struct productor{
 	Buffer buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
-	Script productor; // Array circular con los scripts a colocar en buffer de memoria compartida
-	Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
-    int tam;
+    Buffer ultimoBuffer;
+	//Script productor; // Array circular con los scripts a colocar en buffer de memoria compartida
+	//Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
+	Lista_scripts listaScripts; // Array circular con los scripts a colocar en buffer de memoria compartida
     //bool dormido;
 };
 
@@ -81,15 +84,38 @@ void productor(TIPO args){
 
 
 
-Productor CrearProductor();
+Productor CrearProductor(){
+    Buffer buffer = CrearBuffer();
+    Buffer ultimoBuffer = CrearBuffer();
+    Lista_scripts listaScripts = CrearListaScripts();
 
-void ActualizarBufferProductor();
+    Productor nuevo_productor = new(productor);
+    nuevo_productor->buffer = buffer;
+    nuevo_productor->ultimoBuffer = ultimoBuffer;
+    nuevo_productor->listaScripts = listaScripts;
+
+    return nuevo_productor;
+}
+
+
+
+void ActualizarBufferProductor(Productor &prod, Lista_scripts listado_scripts){
+
+	//printf("Productor: %s\n", fechaHora);
+    printf("Productor.\n");
+    int contador = 0;
+    while (listado_scripts != NULL && contador < MAX_SCRIPTS){
+        //prod->buffer
+        // InsertarScriptBuffer(Buffer prod->buffer, Script s); Funcion en buffer
+    }
+}
 
 void IsEmptyProductor();
 
 void Ultimo();
 
 
+// Creo qeu quedo obselta con InsertarScriptBuffer(Buffer prod->buffer, Script s) en buffer.c
 bool ColocarScripts(Lista_scripts lista);
 // Coloca los scripts de lista en buffer circular array
 // Llama a funcion ColocarScriptsBuffer(Lista_scripts lista) de Buffer.c

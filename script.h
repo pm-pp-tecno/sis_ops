@@ -8,6 +8,7 @@ typedef struct script* Script;
 
 typedef struct lista_scripts* Lista_scripts;
 
+Lista_scripts CrearListaScripts();
 
 Lista_scripts ArmarListaScripts();
 

@@ -75,6 +75,17 @@ int main(){
     // liberar memoria de semaforos
     // etc.
 
+    Productor prod = CrearProductor();
+
+    ActualizarBufferProductor(prod, listado_scripts);
+
+    // ColocarBufferMemoria(buffer)
+    // dormir productor
+    // sem_post a consumidor
+    // Consumidor cons = CrearConsumidor();
+    // scripts = LeerBufferConsumidor(cons)
+    // EjecutarScriptsConsumidor(scripts) // ejecuta y guarda las salidas
+    // duerme consumidor. sem_post a productor
 
 
     return 0;

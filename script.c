@@ -28,6 +28,11 @@ struct lista_scripts{
 
 
 
+Lista_scripts CrearListaScripts(){
+    Lista_scripts listaScripts = new(lista_scripts);
+    return listaScripts;
+}
+
 /*
 FILE *fp;
 FILE *abro_archivo(Archivo a)

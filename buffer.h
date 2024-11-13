@@ -8,6 +8,7 @@
 
 typedef struct buffer* Buffer;
 
+Buffer CrearBuffer();
 
 int ColocarScriptsBuffer(Lista_scripts lista);
 

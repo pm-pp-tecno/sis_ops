@@ -4,7 +4,7 @@
  * 
  */
 
-#define MAX_BUFFER 5
+#define MAX_BUFFER 100
 
 #include "archivo.h"
 #include "script.h"
@@ -22,8 +22,15 @@ struct buffer{
     // En esa estructura poner libre (y usado??)
     // Con eso puedo usar % MAX_BUFFER para nunca pasarme del array y dar la vuelta
     // Al dar la vuelta ver si necesito chequear usado
+    char * array_buffer[100];
     int tam;
 };
+
+
+Buffer CrearBuffer(){
+    return NULL;
+}
+
 
 
 // tal vez precise pasar algun dato mas...
