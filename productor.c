@@ -23,18 +23,17 @@
 #include <semaphore.h>
 #include <sys/ipc.h>
 
+#include <iostream>
 
 
 using namespace std;
 
 
 struct productor{
-	Buffer buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
-    Buffer ultimoBuffer;
-	//Script productor; // Array circular con los scripts a colocar en buffer de memoria compartida
+	Buffer buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento?
+    Buffer ultimoBuffer; // y al ultimo?
 	//Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
-	Lista_scripts listaScripts; // Array circular con los scripts a colocar en buffer de memoria compartida
-    //bool dormido;
+	Lista_scripts listaScripts; 
 };
 
 
@@ -91,10 +90,10 @@ void productor(TIPO args){
 
 
 
-Productor CrearProductor(){
+Productor CrearProductor(Lista_scripts listado_scripts){
     Buffer buffer = CrearBuffer();
     Buffer ultimoBuffer = buffer;
-    Lista_scripts listaScripts = CrearListaScripts();
+    Lista_scripts listaScripts = AsignarListaScripts(listado_scripts);
 
     Productor nuevo_productor = new(productor);
     nuevo_productor->buffer = buffer;
@@ -106,7 +105,7 @@ Productor CrearProductor(){
 
 
 
-void ActualizarBufferProductor(Productor &prod, Lista_scripts listado_scripts){
+void ActualizarBufferProductor(Productor &prod){
 // Actualiza el buffer de memoria compartida
 	//printf("Productor: %s\n", fechaHora);
     printf("Actualizando Buffer - Productor.\n");
@@ -129,17 +128,20 @@ void ActualizarBufferProductor(Productor &prod, Lista_scripts listado_scripts){
     
     // Inserta MAX_SCRIPTS (10) scripts en array buffer en memoria compartida
     // @TODO: FALTAN CHEQUEOS!!
-    while (listado_scripts != NULL && contador < MAX_SCRIPTS){
+    while (prod->listaScripts != NULL && contador < MAX_SCRIPTS){
 
         // Voy eliminando scripts de la lista a medida que los colocamos
-        Script script = Head(listado_scripts);
-        Lista_scripts aux = listado_scripts;
+        Script script = Head(prod->listaScripts);
+        Lista_scripts aux = prod->listaScripts;
 
         // Armar funcion en Buffer
         ColocarScriptsBuffer(prod->buffer, script);
 
+        printf("Script %d en productor: ", contador);
+        ImprimirScript(script);
+        cout << endl;
         
-        listado_scripts = Tail(listado_scripts);
+        prod->listaScripts = Tail(prod->listaScripts);
 
         //delete aux;
         //delete script;

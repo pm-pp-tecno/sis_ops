@@ -4,6 +4,8 @@
  * 
  */
 
+#define MAX_LECTURA 5
+
 #include "archivo.h"
 #include "script.h"
 #include "buffer.h"
@@ -16,16 +18,13 @@
 #include <iostream>
 
 
-
-
 using namespace std;
 
 struct consumidor{
-	Buffer buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
-	Script consumidor; // Array circular con los scripts a colocar en buffer de memoria compartida
-	Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
-    int tam;
-    bool dormido;
+	Buffer buffer; 
+    Buffer ultimoBuffer; 
+	//Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
+	Lista_scripts listaScripts; 
 };
 
 
@@ -40,6 +39,21 @@ void CrearConsumidor(){
     // cuando no hay mas scripts para leer (consumidor == productor - 1)
     // se hecha a dormir.
 
+
+
 }
 
+/*
+Productor CrearProductor(Lista_scripts listado_scripts){
+    Buffer buffer = CrearBuffer();
+    Buffer ultimoBuffer = buffer;
+    Lista_scripts listaScripts = AsignarListaScripts(listado_scripts);
 
+    Productor nuevo_productor = new(productor);
+    nuevo_productor->buffer = buffer;
+    nuevo_productor->ultimoBuffer = ultimoBuffer;
+    nuevo_productor->listaScripts = listaScripts;
+
+    return nuevo_productor;
+}
+*/

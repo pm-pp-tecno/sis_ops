@@ -11,7 +11,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <iostream>
 
+using namespace std;
 
 // 1 Script = 1 linea ejecutable de codigo
 struct script{
@@ -28,15 +30,67 @@ struct lista_scripts{
 
 
 
+/*
+FILE *fp;
+FILE *abro_archivo(Archivo a)
+*/
+
+
+void ImprimirScript(Script script){
+    cout << script->linea;
+}
+
+char *ObtenerLinea(Script s){
+    //Script s = lista->script;
+    return s->linea;
+}
+
+
+Script InsertarScript(Lista_scripts lista, Script s){
+    return s;
+}
+
+Script ObtenerScript(Lista_scripts lista){
+    Script s = lista->script;
+    return s;
+}
+
+
+
+Script Head(Lista_scripts lista){
+    Lista_scripts iter = lista;
+    while (iter->ant != NULL){
+        iter = iter->ant;
+    }
+    return iter->script;
+}
+
+
+Lista_scripts Tail(Lista_scripts lista){
+    if (lista != NULL)
+        return lista->sig;
+    else 
+        return NULL;
+}
+
+bool IsEmpty(Lista_scripts lista){
+    return lista == NULL;
+}
+
+
+
 Lista_scripts CrearListaScripts(){
     Lista_scripts listaScripts = new(lista_scripts);
     return listaScripts;
 }
 
-/*
-FILE *fp;
-FILE *abro_archivo(Archivo a)
-*/
+
+Lista_scripts AsignarListaScripts(Lista_scripts listado_scripts){
+    Lista_scripts listaScripts = listado_scripts;
+    return listaScripts;
+}
+
+
 
 Lista_scripts ArmarListaScripts(){
     char nom_arch[256], str_inodo[8], tipo_arch[2];
@@ -85,50 +139,6 @@ Lista_scripts ArmarListaScripts(){
 
     return listado_scripts;
 
-}
-
-
-
-
-
-
-
-Script InsertarScript(Lista_scripts lista, Script s){
-    return s;
-}
-
-
-
-Script ObtenerScript(Lista_scripts lista){
-    Script s = lista->script;
-    return s;
-}
-
-
-char *ObtenerLinea(Script s){
-    //Script s = lista->script;
-    return s->linea;
-}
-
-
-
-Lista_scripts Tail(Lista_scripts lista){
-    if (lista != NULL)
-        return lista->sig;
-    else 
-        return NULL;
-}
-
-Script Head(Lista_scripts lista){
-    Lista_scripts iter = lista;
-    while (iter->ant != NULL){
-        iter = iter->ant;
-    }
-    return iter->script;
-}
-
-bool IsEmpty(Lista_scripts lista){
-    return lista == NULL;
 }
 
 

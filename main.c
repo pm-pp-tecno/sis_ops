@@ -24,6 +24,7 @@ using namespace std;
 typedef struct fabrica{
 	Productor productor;
 	Consumidor consumidor;
+	Buffer buffer;
 } Fabrica;
 
 
@@ -75,14 +76,15 @@ int main(){
     // liberar memoria de semaforos
     // etc.
 
-    Productor prod = CrearProductor();
+    Productor prod = CrearProductor(listado_scripts);
 
-    ActualizarBufferProductor(prod, listado_scripts);
+    ActualizarBufferProductor(prod);
 
-    // ColocarBufferMemoria(buffer)
-    // dormir productor
-    // sem_post a consumidor
-    // Consumidor cons = CrearConsumidor();
+    // Imprimir array Buffer en memoria para ver que se lleno bien
+
+    // dormir productor y sem_post a consumidor (dentro de ActualizarBufferProductor?)
+
+    Consumidor cons = CrearConsumidor(prod);
     // scripts = LeerBufferConsumidor(cons)
     // EjecutarScriptsConsumidor(scripts) // ejecuta y guarda las salidas
     // duerme consumidor. sem_post a productor
