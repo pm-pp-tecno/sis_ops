@@ -17,6 +17,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+// semaforos
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <semaphore.h>
+#include <sys/ipc.h>
+
+
 
 using namespace std;
 
@@ -86,7 +93,7 @@ void productor(TIPO args){
 
 Productor CrearProductor(){
     Buffer buffer = CrearBuffer();
-    Buffer ultimoBuffer = CrearBuffer();
+    Buffer ultimoBuffer = buffer;
     Lista_scripts listaScripts = CrearListaScripts();
 
     Productor nuevo_productor = new(productor);
@@ -100,15 +107,34 @@ Productor CrearProductor(){
 
 
 void ActualizarBufferProductor(Productor &prod, Lista_scripts listado_scripts){
-
+// Actualiza el buffer de memoria compartida
 	//printf("Productor: %s\n", fechaHora);
-    printf("Productor.\n");
+    printf("Actualizando Buffer - Productor.\n");
     int contador = 0;
+    
+    int shm_fd;
+	int *ptr;
+	int p;
+    
     /*
+	sem_t *sem_prod;
+	sem_prod = sem_open("sem_prod.txt", O_CREAT, 644, 1);
+
+    //sem_wait(sem_prod);
+
+	sem_t *sem_cons;
+	sem_cons = sem_open("sem_cons.txt", O_CREAT, 644, 0);
+
+    sem_wait(sem_cons);
+    */
+    // Inserta MAX_SCRIPTS (10) scripts en array buffer en memoria compartida
     while (listado_scripts != NULL && contador < MAX_SCRIPTS){
-        //prod->buffer
-        // InsertarScriptBuffer(Buffer prod->buffer, Script s); Funcion en buffer
-    }*/
+        // prod->buffer
+        //ColocarScriptsBuffer(prod->buffer, s);
+        contador++;
+    }
+
+
 }
 
 void IsEmptyProductor();
