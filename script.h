@@ -18,6 +18,8 @@ Script ObtenerScript(Lista_scripts lista);
 
 char *ObtenerLinea(Script s);
 
+Script Head(Lista_scripts lista);
+
 Lista_scripts Tail(Lista_scripts lista);
 
 bool IsEmpty(Lista_scripts lista);
