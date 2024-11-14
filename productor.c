@@ -130,13 +130,12 @@ void ActualizarBufferProductor(Productor &prod, Lista_scripts listado_scripts){
     // Inserta MAX_SCRIPTS (10) scripts en array buffer en memoria compartida
     // @TODO: FALTAN CHEQUEOS!!
     while (listado_scripts != NULL && contador < MAX_SCRIPTS){
-        // prod->buffer
-        // Armar funcion en Buffer
+
         // Voy eliminando scripts de la lista a medida que los colocamos
         Script script = Head(listado_scripts);
         Lista_scripts aux = listado_scripts;
 
-
+        // Armar funcion en Buffer
         ColocarScriptsBuffer(prod->buffer, script);
 
         
@@ -148,7 +147,7 @@ void ActualizarBufferProductor(Productor &prod, Lista_scripts listado_scripts){
     }
 
     // Habilito a consumidor para que consuma scripts
-    sem_post(sem_cons);
+    //sem_post(sem_cons);
     
     
 	sem_close(sem_prod);
