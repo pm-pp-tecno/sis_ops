@@ -34,7 +34,7 @@ typedef struct fabrica{
 int main(){
 
     // numero del array del buffer en el que se encuentra cada proceso?
-    int productor, consumidores;
+    // int productor, consumidores;
     //Fabrica fabrica;
 
 /*
@@ -45,13 +45,18 @@ int main(){
     }
 
 */
+    sem_t * sem_produce = sem_open("sem_produce", O_CREAT, 0644, 1);
+    sem_t * sem_consume = sem_open("sem_consume", O_CREAT, 0644, 0);
 
-    Lista_scripts listado_scripts;
+    Buffer buffer = CrearBuffer();
 
-    listado_scripts = ArmarListaScripts();
+    Lista_scripts listado_scripts = ArmarListaScripts();
 
     Lista_scripts iter = listado_scripts;
     int cont = 0;
+
+    Productor prod = CrearProductor(buffer, listado_scripts); 
+    Consumidor cons = CrearConsumidor(buffer);
 
     while (!IsEmpty(iter)) {
         Script auxiS = ObtenerScript(iter);
@@ -75,8 +80,6 @@ int main(){
     // con cada script que ejecuta, guarda en un archivo la salida, con cierto nombre. 
     // liberar memoria de semaforos
     // etc.
-
-    Productor prod = CrearProductor(listado_scripts);
 
     ActualizarBufferProductor(prod);
 

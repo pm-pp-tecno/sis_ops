@@ -30,8 +30,10 @@ using namespace std;
 
 
 struct productor{
-	Buffer buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento?
-    Buffer ultimoBuffer; // y al ultimo?
+	Buffer buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
+    //Buffer ultimoBuffer;
+    int tope;
+	//Script productor; // Array circular con los scripts a colocar en buffer de memoria compartida
 	//Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
 	Lista_scripts listaScripts; 
 };
@@ -90,15 +92,15 @@ void productor(TIPO args){
 
 
 
-Productor CrearProductor(Lista_scripts listado_scripts){
-    Buffer buffer = CrearBuffer();
-    Buffer ultimoBuffer = buffer;
-    Lista_scripts listaScripts = AsignarListaScripts(listado_scripts);
+Productor CrearProductor(Buffer buffer, Lista_scripts lista_scripts){
+    //Buffer buffer = CrearBuffer();
+    //Buffer ultimoBuffer = buffer;
+    //Lista_scripts listaScripts = CrearListaScripts();
 
     Productor nuevo_productor = new(productor);
     nuevo_productor->buffer = buffer;
-    nuevo_productor->ultimoBuffer = ultimoBuffer;
-    nuevo_productor->listaScripts = listaScripts;
+    nuevo_productor->tope = 0;
+    nuevo_productor->listaScripts = lista_scripts;
 
     return nuevo_productor;
 }

@@ -35,15 +35,15 @@ struct buffer{
     // En esa estructura poner libre (y usado??)
     // Con eso puedo usar % MAX_BUFFER para nunca pasarme del array y dar la vuelta
     // Al dar la vuelta ver si necesito chequear usado
-    char * array_buffer[100];
+    char * array_buffer[MAX_BUFFER];
     int tam;
 };
 
 
 Buffer CrearBuffer(){
     int shm_fd;
-	int *ptr;
-	int p;
+	Buffer buffer;
+	//int p;
 	const int SIZE=1024;
     
 /*
@@ -60,7 +60,7 @@ Buffer CrearBuffer(){
 	ftruncate(shm_fd, SIZE);
 	//printf("Hola, funciono\n");
 	// Mapear la memoria compartida a la memoria del proceso.
-	ptr = (int*) mmap (0, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+	buffer = (Buffer) mmap (0, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
 	
 	/*
     if (p == 0) wait(NULL);
@@ -69,10 +69,10 @@ Buffer CrearBuffer(){
     */
 
     // Usar la memoria compartida
-    *ptr=getpid();
-
+    //*ptr=getpid();
+	buffer->tam = 0;
 	close(shm_fd);
-	shm_unlink("/nombre");
+	//shm_unlink("/nombre");
 
 	
     /*
@@ -90,7 +90,7 @@ Buffer CrearBuffer(){
     */
 
 
-    return NULL;
+    return buffer;
 }
 
 
@@ -108,7 +108,12 @@ int ColocarScriptsBuffer(Buffer buffer, Script script){
 
 // tal vez precise pasar algun dato mas...
 // desde y hasta los puedo pasar o podria fijar los limites dentro de la funcion.
-int LeerScriptsBuffer(int desde, int hasta);
+int LeerScriptsBuffer(Buffer buffer, int desde, int hasta){
+	for (int i = desde; i < hasta && i < buffer->tam; i++){
+		printf("Script %d: %s\n", i, buffer->array_buffer[i]);
+	}
+	return 1;
+}
 // Tengo que ver cual seria el primer elemento a quitar y cuantos
 // esos datos los puedo obterner pasados por parametro o sino obtenerlos directo con el array.
 
