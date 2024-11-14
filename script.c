@@ -119,6 +119,13 @@ Lista_scripts Tail(Lista_scripts lista){
         return NULL;
 }
 
+Script Head(Lista_scripts lista){
+    Lista_scripts iter = lista;
+    while (iter->ant != NULL){
+        iter = iter->ant;
+    }
+    return iter->script;
+}
 
 bool IsEmpty(Lista_scripts lista){
     return lista == NULL;
