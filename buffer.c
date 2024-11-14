@@ -70,7 +70,7 @@ Buffer CrearBuffer(){
 
     // Usar la memoria compartida
     *ptr=getpid();
-    
+
 	close(shm_fd);
 	shm_unlink("/nombre");
 
@@ -97,7 +97,9 @@ Buffer CrearBuffer(){
 
 // tal vez precise pasar algun dato mas...
 // podria devolver el ultimo lugar del array donde coloco una linea de script.
-int ColocarScriptsBuffer(Lista_scripts lista);
+int ColocarScriptsBuffer(Buffer buffer, Script script){
+    return 0;
+}
 // Coloca una cantidad < a MAX_BUFFER de Scripts en el array del buffer
 // Tal vez un MAX_BUFFER / 4 o 3. Para que duerma despierte a consumidor y despues vuelva a terminar lo que le falta.
 // En el array coloco la linea del script s en 1 lugar (char *) del buffer.

@@ -60,7 +60,7 @@ void productor(TIPO args){
     }
 
     // Asigno esos scripts a array buffer
-    // Le hago sem_post a los consumidores para que sepan que hay mas scripts.
+    // Le hago sem_post a los consumidores para que sepan que hay mas scripts
     // Chequeo que el valor de productor no sea mayor a consumidores
     // Si es igual entonces el productor se duerme.
 
@@ -116,7 +116,7 @@ void ActualizarBufferProductor(Productor &prod, Lista_scripts listado_scripts){
 	int *ptr;
 	int p;
     
-    /*
+    
 	sem_t *sem_prod;
 	sem_prod = sem_open("sem_prod.txt", O_CREAT, 644, 1);
 
@@ -125,14 +125,39 @@ void ActualizarBufferProductor(Productor &prod, Lista_scripts listado_scripts){
 	sem_t *sem_cons;
 	sem_cons = sem_open("sem_cons.txt", O_CREAT, 644, 0);
 
-    sem_wait(sem_cons);
-    */
+    //sem_wait(sem_cons);
+    
     // Inserta MAX_SCRIPTS (10) scripts en array buffer en memoria compartida
+    // @TODO: FALTAN CHEQUEOS!!
     while (listado_scripts != NULL && contador < MAX_SCRIPTS){
         // prod->buffer
-        //ColocarScriptsBuffer(prod->buffer, s);
+        // Armar funcion en Buffer
+        // Voy eliminando scripts de la lista a medida que los colocamos
+        Script script = Head(listado_scripts);
+        Lista_scripts aux = listado_scripts;
+
+
+        ColocarScriptsBuffer(prod->buffer, script);
+
+        
+        listado_scripts = Tail(listado_scripts);
+
+        //delete aux;
+        //delete script;
         contador++;
     }
+
+    // Habilito a consumidor para que consuma scripts
+    sem_post(sem_cons);
+    
+    
+	sem_close(sem_prod);
+	sem_close(sem_cons);
+
+    
+    // Los semaforos habria que eliminarlos al terminar el programa, calculo
+	//sem_unlink("sem_prod.txt");
+	//sem_unlink("sem_cons.txt");
 
 
 }
@@ -142,7 +167,7 @@ void IsEmptyProductor();
 void Ultimo();
 
 
-// Creo qeu quedo obselta con InsertarScriptBuffer(Buffer prod->buffer, Script s) en buffer.c
+// Creo que quedo obselta con InsertarScriptBuffer(Buffer prod->buffer, Script s) en buffer.c
 bool ColocarScripts(Lista_scripts lista);
 // Coloca los scripts de lista en buffer circular array
 // Llama a funcion ColocarScriptsBuffer(Lista_scripts lista) de Buffer.c

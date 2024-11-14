@@ -10,7 +10,7 @@ typedef struct buffer* Buffer;
 
 Buffer CrearBuffer();
 
-int ColocarScriptsBuffer(Lista_scripts lista);
+int ColocarScriptsBuffer(Buffer buffer, Script script);
 
 int LeerScriptsBuffer(int desde, int hasta);
 
