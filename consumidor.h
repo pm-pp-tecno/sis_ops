@@ -6,12 +6,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+#include "buffer.h"
 
 typedef struct consumidor* Consumidor;
 
 
-void CrearConsumidor();
+Consumidor CrearConsumidor(Buffer buffer);
 
 
 

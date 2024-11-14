@@ -4,6 +4,7 @@
  * 
  */
 
+#include "consumidor.h"
 #include "archivo.h"
 #include "script.h"
 #include "buffer.h"
@@ -30,7 +31,7 @@ struct consumidor{
 
 
 
-void CrearConsumidor(){
+Consumidor CrearConsumidor(Buffer buffer){
 
     // duerme hasta que productor lo despierte con mas scripts
     // cuando hay scripts los lee del buffer circular de memoria compartida
@@ -39,7 +40,10 @@ void CrearConsumidor(){
     // cada archivo de log se nombra con el identificador del proceso y hora de ejecucion.
     // cuando no hay mas scripts para leer (consumidor == productor - 1)
     // se hecha a dormir.
-
+    Consumidor nuevo_consumidor = new(consumidor);
+    nuevo_consumidor->buffer = buffer;
+    nuevo_consumidor->proximo = 0;
+    return nuevo_consumidor;
 }
 
 

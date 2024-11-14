@@ -12,7 +12,7 @@ Buffer CrearBuffer();
 
 int ColocarScriptsBuffer(Buffer buffer, Script script);
 
-int LeerScriptsBuffer(int desde, int hasta);
+int LeerScriptsBuffer(Buffer buffer, int desde, int hasta);
 
 
 

@@ -92,15 +92,15 @@ void productor(TIPO args){
 
 
 
-Productor CrearProductor(){
-    Buffer buffer = CrearBuffer();
-    Buffer ultimoBuffer = buffer;
-    Lista_scripts listaScripts = CrearListaScripts();
+Productor CrearProductor(Buffer buffer, Lista_scripts lista_scripts){
+    //Buffer buffer = CrearBuffer();
+    //Buffer ultimoBuffer = buffer;
+    //Lista_scripts listaScripts = CrearListaScripts();
 
     Productor nuevo_productor = new(productor);
     nuevo_productor->buffer = buffer;
-    nuevo_productor->ultimoBuffer = ultimoBuffer;
-    nuevo_productor->listaScripts = listaScripts;
+    nuevo_productor->tope = 0;
+    nuevo_productor->listaScripts = lista_scripts;
 
     return nuevo_productor;
 }
