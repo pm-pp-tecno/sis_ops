@@ -22,10 +22,10 @@ using namespace std;
 
 struct consumidor{
 	Buffer buffer; // Ver si es 1 buffer o una lista. Puntero al 1er elemento? y al ultimo?
-	Script consumidor; // Array circular con los scripts a colocar en buffer de memoria compartida
-	Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
-    int tam;
-    bool dormido;
+	//Script consumidor; // Array circular con los scripts a colocar en buffer de memoria compartida
+	//Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
+    int proximo; // proximo lugar del array que ingresa el consumidor
+    //bool dormido; semaforo
 };
 
 
