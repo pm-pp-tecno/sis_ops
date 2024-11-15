@@ -116,36 +116,42 @@ void ActualizarBufferProductor(Productor &prod){
     int shm_fd;
 	int *ptr;
 	int p;
-
     
 	sem_t *sem_prod = sem_open("sem_prod.txt", O_CREAT, 644, 1);
 	sem_t *sem_cons = sem_open("sem_cons.txt", O_CREAT, 644, 0);
     
-    
     //sem_wait(sem_prod);
-
     //sem_wait(sem_cons);
     
     // Inserta MAX_SCRIPTS (10) scripts en array buffer en memoria compartida
     // @TODO: FALTAN CHEQUEOS!!
-    while (prod->listaScripts != NULL && contador < MAX_SCRIPTS){
+    while (prod->listaScripts != NULL && contador < MAX_SCRIPTS && statusBuffer != -1){
 
         // Voy eliminando scripts de la lista a medida que los colocamos
         Script script = Head(prod->listaScripts);
         Lista_scripts aux = prod->listaScripts;
 
         // Armar funcion en Buffer
-        ColocarScriptsBuffer(prod->buffer, script);
+        int statusBuffer = ColocarScriptsBuffer(prod->buffer, script);
 
-        printf("Script %d en productor: ", contador);
-        ImprimirScript(script);
-        cout << endl;
+        if (statusBuffer != -1){
+
+            printf("Script %d en productor: ", contador);
+            ImprimirScript(script);
+            cout << endl;
+
+        }
         
         prod->listaScripts = Tail(prod->listaScripts);
 
         //delete aux;
         //delete script;
         contador++;
+    }
+
+    if (statusBuffer == -1){
+            // dormir productor
+            // sempost consumidores
     }
 
     // Habilito a consumidor para que consuma scripts

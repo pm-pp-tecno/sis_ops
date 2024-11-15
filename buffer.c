@@ -103,19 +103,22 @@ Buffer CrearBuffer(){
 // tal vez precise pasar algun dato mas...
 // podria devolver el ultimo lugar del array donde coloco una linea de script.
 int ColocarScriptsBuffer(Buffer buffer, Script script){
-    sem_t *sem_buffer = sem_open("sem_buffer.txt", O_CREAT, 644, 1);
-    sem_wait(sem_buffer);
+    // chekear si esta lleno
     if(buffer->tam >= MAX_BUFFER){
 		printf("Buffer lleno\n");
 		return -1; //por retornar algo, despues en el main verificar que retorna
 	}
-    sem_post(sem_buffer);
-    sem_close(sem_buffer);
+    sem_t *sem_buffer = sem_open("sem_buffer.txt", O_CREAT, 644, 1);
+    sem_wait(sem_buffer);
+    
 	strcpy(buffer->array_buffer[buffer->tam], ObtenerLinea(script));
 	// por lo que comprendi guarda la linea del script en el buffer segun el
 	// buffer->tam, que el tam determina donde va el script?, ubica el script en
 	// la posicion que le da el tam y incrementa este
 	// capaz deberia ir al productor
+    
+    sem_post(sem_buffer);
+    sem_close(sem_buffer);
 	buffer->tam++;
 	return 0;
 }

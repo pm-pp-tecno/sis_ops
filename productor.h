@@ -3,6 +3,7 @@
 
 
 
+#include "obli.h"
 #include "archivo.h"
 #include "script.h"
 #include "buffer.h"

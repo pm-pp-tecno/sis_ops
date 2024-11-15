@@ -4,6 +4,8 @@
  * 
  */
 
+
+#include "obli.h"
 #include "archivo.h"
 #include "script.h"
 
@@ -57,7 +59,7 @@ Script ObtenerScript(Lista_scripts lista){
         //Lista_scripts listaAux = lista;
         //lista = lista->sig;
         //delete [] listaAux->script;
-        //delete listaAuux;
+        //delete listaAux;
     //}
     return s;
 }
@@ -97,7 +99,7 @@ Lista_scripts AsignarListaScripts(Lista_scripts listado_scripts){
     return listaScripts;
 }
 
-
+ 
 
 Lista_scripts ArmarListaScripts(){
     char nom_arch[256], str_inodo[8], tipo_arch[2];

@@ -4,6 +4,7 @@
  * 
  */
 
+#include "obli.h"
 #include "script.h"
 #include "productor.h"
 #include "consumidor.h"
@@ -18,6 +19,8 @@
 #include <unistd.h>
 #include  <wait.h>
 #include <semaphore.h>
+
+
 
 using namespace std;
 
@@ -64,9 +67,12 @@ int main(){
     
 
     //Lista_scripts iter = listado_scripts;
+    //Lista_scripts iter = ObtenerListaScript(prod);;
     int cont = 0;
 
-    
+
+
+    // for/while (1..P)
 
     // cambiar 2 condiciones
     while (!IsEmpty(iter)) {
