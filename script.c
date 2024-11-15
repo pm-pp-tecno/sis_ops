@@ -25,7 +25,7 @@ struct script{
 struct lista_scripts{
 	Script script;
     Lista_scripts sig;
-    Lista_scripts ant;
+    Lista_scripts ant;// Comentaría anterior lista scripts siepre apuntando al comienzo
 };
 
 
@@ -46,18 +46,25 @@ char *ObtenerLinea(Script s){
 }
 
 
-Script InsertarScript(Lista_scripts lista, Script s){
+Script InsertarScript(Lista_scripts lista, Script s){//(?)
     return s;
 }
 
 Script ObtenerScript(Lista_scripts lista){
-    Script s = lista->script;
+    //Retira script de la lista, avanza la lista y elimina el nodo consumido
+    //if(lista->script !=NULL){
+        Script s = lista->script;
+        //Lista_scripts listaAux = lista;
+        //lista = lista->sig;
+        //delete [] listaAux->script;
+        //delete listaAuux;
+    //}
     return s;
 }
 
 
 
-Script Head(Lista_scripts lista){
+Script Head(Lista_scripts lista){//Se puede devolver puntero nunca moificado el comienzo de la lista
     Lista_scripts iter = lista;
     while (iter->ant != NULL){
         iter = iter->ant;
@@ -79,7 +86,7 @@ bool IsEmpty(Lista_scripts lista){
 
 
 
-Lista_scripts CrearListaScripts(){
+Lista_scripts CrearListaScripts(){//Return NULL
     Lista_scripts listaScripts = new(lista_scripts);
     return listaScripts;
 }
@@ -116,7 +123,8 @@ Lista_scripts ArmarListaScripts(){
 
     //printf("Hola1\n");
     while (!feof(f)){
-        fscanf(f,"%*s %[^\n]", nom_arch);
+        fscanf(f,"%*s %[^\n]", nom_arch);//fgets(nom_arch,sizeof(nom_arch), f);
+        //if(nom_arch[0]!='/' && nom_arch[1]!='/' && !feof(f))
         if (nom_arch != NULL && strcmp(nom_arch, "//----------------------------------------") != 0){
             //fprintf(stdout,"Archivo: %s inodo %d\n",nom_arch,nro_inodo);
             Script auxS = new(script);
@@ -126,7 +134,7 @@ Lista_scripts ArmarListaScripts(){
             Lista_scripts auxListado = new(lista_scripts);
             auxListado->script = auxS;
             auxListado->sig = listado_scripts;
-            auxListado->ant = NULL;
+            auxListado->ant = NULL;// NO, además cuando avance el while va a quedar ese nodo NULL
             listado_scripts = auxListado;
             fprintf(stdout,"%s\n",auxListado->script->linea);
         } /* else {
