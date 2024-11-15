@@ -17,7 +17,7 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #include  <wait.h>
-
+#include <semaphore.h>
 
 using namespace std;
 
@@ -87,7 +87,7 @@ int main(){
 
     // dormir productor y sem_post a consumidor (dentro de ActualizarBufferProductor?)
 
-    Consumidor cons = CrearConsumidor(prod);
+    //Consumidor cons = CrearConsumidor(prod);
     // scripts = LeerBufferConsumidor(cons)
     // EjecutarScriptsConsumidor(scripts) // ejecuta y guarda las salidas
     // duerme consumidor. sem_post a productor

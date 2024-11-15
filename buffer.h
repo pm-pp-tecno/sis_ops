@@ -14,6 +14,8 @@ int ColocarScriptsBuffer(Buffer buffer, Script script);
 
 int LeerScriptsBuffer(Buffer buffer, int desde, int hasta);
 
+int ObtenerTamBuffer(Buffer buffer);
 
+void ActualizarTamBuffer(Buffer buffer, int nuevoTam);
 
 #endif // BUFFER_H

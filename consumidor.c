@@ -46,4 +46,10 @@ Consumidor CrearConsumidor(Buffer buffer){
     return nuevo_consumidor;
 }
 
+int ObtenerProximo(Consumidor c){
+    return c->proximo;
+}
 
+void ActualizarProximo(Consumidor c, int nuevoProximo){
+    c->proximo = nuevoProximo;
+}

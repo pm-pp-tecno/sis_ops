@@ -98,7 +98,17 @@ Buffer CrearBuffer(){
 // tal vez precise pasar algun dato mas...
 // podria devolver el ultimo lugar del array donde coloco una linea de script.
 int ColocarScriptsBuffer(Buffer buffer, Script script){
-    return 0;
+    if(buffer->tam >= MAX_BUFFER){
+		printf("Buffer lleno\n");
+		return -1; //por retornar algo, despues en el main verificar que retorna
+	}
+	strcpy(buffer->array_buffer[buffer->tam], ObtenerLinea(script));
+	// por lo que comprendi guarda la linea del script en el buffer segun el
+	// buffer->tam, que el tam determina donde va el script?, ubica el script en
+	// la posicion que le da el tam y incrementa este
+	// capaz deberia ir al productor
+	buffer->tam++;
+	return 0;
 }
 // Coloca una cantidad < a MAX_BUFFER de Scripts en el array del buffer
 // Tal vez un MAX_BUFFER / 4 o 3. Para que duerma despierte a consumidor y despues vuelva a terminar lo que le falta.
@@ -117,4 +127,10 @@ int LeerScriptsBuffer(Buffer buffer, int desde, int hasta){
 // Tengo que ver cual seria el primer elemento a quitar y cuantos
 // esos datos los puedo obterner pasados por parametro o sino obtenerlos directo con el array.
 
+int ObtenerTamBuffer(Buffer buffer){
+	return buffer->tam;
+}
 
+void ActualizarTamBuffer(Buffer buffer, int nuevoTam){
+	buffer->tam = nuevoTam;
+}

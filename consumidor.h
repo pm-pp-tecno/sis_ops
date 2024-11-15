@@ -13,7 +13,8 @@ typedef struct consumidor* Consumidor;
 
 Consumidor CrearConsumidor(Buffer buffer);
 
+int ObtenerProximo(Consumidor c);
 
-
+void ActualizarProximo(Consumidor c, int nuevoProximo);
 
 #endif // CONSUMIDOR_H
