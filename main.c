@@ -70,14 +70,39 @@ int main(){
     //Lista_scripts iter = ObtenerListaScript(prod);;
     int cont = 0;
 
+    x = fork();
 
+    if (x == 0){
+        // Camino del productor
+        for (int i=0; i<PRODUCTORES< i++){
+            p = fork();
+        }
 
-    // for/while (1..P)
+    } else {
+        // Camino del consumidor
+
+    }
+
+    
+
+    if (p == 0){
+        // Es el padre. 
+        for (int i=0; i<CONSUMIDORES< i++){
+        c = fork();
+
+    } else {
+        // Productor
+        // funciones productos // ver si aca
+    }
+        
+
+    if (c == 0){
+        
+    }
 
     // cambiar 2 condiciones
     while (!IsEmpty(iter)) {
 
-        //fork(), 1 para proceso productor y otros 2 para consumidor
 
         // Productor
         // cambiar iter por prod->listaScripts

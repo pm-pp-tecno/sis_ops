@@ -19,4 +19,7 @@ int ObtenerTamBuffer(Buffer buffer);
 
 void ActualizarTamBuffer(Buffer buffer, int nuevoTam);
 
+// llamado desde productor para ver si puede insertar script en celda
+bool IsEmptyCeldaBuffer(Buffer buffer, int celda);
+
 #endif // BUFFER_H

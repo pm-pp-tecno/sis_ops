@@ -102,6 +102,7 @@ Buffer CrearBuffer(){
 
 // tal vez precise pasar algun dato mas...
 // podria devolver el ultimo lugar del array donde coloco una linea de script.
+// 	
 int ColocarScriptsBuffer(Buffer buffer, Script script){
     // chekear si esta lleno
     if(buffer->tam >= MAX_BUFFER){
@@ -111,7 +112,7 @@ int ColocarScriptsBuffer(Buffer buffer, Script script){
     sem_t *sem_buffer = sem_open("sem_buffer.txt", O_CREAT, 644, 1);
     sem_wait(sem_buffer);
     
-	strcpy(buffer->array_buffer[buffer->tam], ObtenerLinea(script));
+	strcpy(buffer->array_buffer[buffer->tope], ObtenerLinea(script));
 	// por lo que comprendi guarda la linea del script en el buffer segun el
 	// buffer->tam, que el tam determina donde va el script?, ubica el script en
 	// la posicion que le da el tam y incrementa este
@@ -136,11 +137,18 @@ int EjecutarScriptsBuffer(Buffer buffer, int desde, int hasta){
 	sem_t *sem_buffer = sem_open("sem_buffer.txt", O_CREAT, 644, 1);
     sem_wait(sem_buffer);
 
+/*
     while (buffer )
     for (int i = desde; i < hasta && i < buffer->tam; i++){
 		printf("Script %d: %s\n", i, buffer->array_buffer[i]);
         //lista += script;
 	}
+	*/
+
+	// traer 1 script del array
+	// con
+
+
     sem_post(sem_buffer);
     sem_close(sem_buffer);
 	return i;
@@ -165,4 +173,10 @@ int ObtenerTamBuffer(Buffer buffer){
 
 void ActualizarTamBuffer(Buffer buffer, int nuevoTam){
 	buffer->tam = nuevoTam;
+}
+
+
+bool IsEmptyCeldaBuffer(Buffer buffer, int celda){
+// Retorna si la celda celda esta vacia
+	return strcmp(buffer->array_buffer[celda], "") == 0;
 }

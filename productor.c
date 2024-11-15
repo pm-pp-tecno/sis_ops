@@ -127,26 +127,40 @@ void ActualizarBufferProductor(Productor &prod){
     // @TODO: FALTAN CHEQUEOS!!
     while (prod->listaScripts != NULL && contador < MAX_SCRIPTS && statusBuffer != -1){
 
-        // Voy eliminando scripts de la lista a medida que los colocamos
-        Script script = Head(prod->listaScripts);
-        Lista_scripts aux = prod->listaScripts;
+        if (IsEmptyCeldaBuffer(prod->buffer, prod->tope)){
+            statusBuffer = -1;
+            // duerme productor
+        } else {
+            // Voy eliminando scripts de la lista a medida que los colocamos
+            Script script = Head(prod->listaScripts);
+            Lista_scripts aux = prod->listaScripts;
 
-        // Armar funcion en Buffer
-        int statusBuffer = ColocarScriptsBuffer(prod->buffer, script);
 
-        if (statusBuffer != -1){
+            // Armar funcion en Buffer
+            int statusBuffer = ColocarScriptsBuffer(prod->buffer, prod->tope, script);
 
-            printf("Script %d en productor: ", contador);
-            ImprimirScript(script);
-            cout << endl;
+    /*
+            if (statusBuffer != -1){
 
+                printf("Script %d en productor: ", contador);
+                ImprimirScript(script);
+                cout << endl;
+
+            }*/
+            
+            prod->listaScripts = Tail(prod->listaScripts);
+
+            contador++;
+            prod->tope++;
+            prod->tope = prod->tope % MAX_BUFFER;
+
+
+            
+            //delete aux;
+            //delete script;
         }
+       
         
-        prod->listaScripts = Tail(prod->listaScripts);
-
-        //delete aux;
-        //delete script;
-        contador++;
     }
 
     if (statusBuffer == -1){

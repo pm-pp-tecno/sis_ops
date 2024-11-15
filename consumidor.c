@@ -53,3 +53,4 @@ int ObtenerProximo(Consumidor c){
 void ActualizarProximo(Consumidor c, int nuevoProximo){
     c->proximo = nuevoProximo;
 }
+
