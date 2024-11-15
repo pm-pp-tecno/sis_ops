@@ -45,6 +45,9 @@ Buffer CrearBuffer(){
 	Buffer buffer;
 	//int p;
 	const int SIZE=1024;
+
+    sem_t *sem_buffer = sem_open("sem_buffer.txt", O_CREAT, 644, 1);
+    sem_wait(sem_buffer);
     
 /*
 	sem_t *sem1;
@@ -72,7 +75,7 @@ Buffer CrearBuffer(){
     //*ptr=getpid();
 	buffer->tam = 0;
 	close(shm_fd);
-	//shm_unlink("/nombre");
+
 
 	
     /*
@@ -89,6 +92,8 @@ Buffer CrearBuffer(){
 	sem_unlink("sem4.txt");
     */
 
+    sem_post(sem_buffer);
+    sem_close(sem_buffer);
 
     return buffer;
 }
@@ -98,10 +103,14 @@ Buffer CrearBuffer(){
 // tal vez precise pasar algun dato mas...
 // podria devolver el ultimo lugar del array donde coloco una linea de script.
 int ColocarScriptsBuffer(Buffer buffer, Script script){
+    sem_t *sem_buffer = sem_open("sem_buffer.txt", O_CREAT, 644, 1);
+    sem_wait(sem_buffer);
     if(buffer->tam >= MAX_BUFFER){
 		printf("Buffer lleno\n");
 		return -1; //por retornar algo, despues en el main verificar que retorna
 	}
+    sem_post(sem_buffer);
+    sem_close(sem_buffer);
 	strcpy(buffer->array_buffer[buffer->tam], ObtenerLinea(script));
 	// por lo que comprendi guarda la linea del script en el buffer segun el
 	// buffer->tam, que el tam determina donde va el script?, ubica el script en
@@ -118,14 +127,34 @@ int ColocarScriptsBuffer(Buffer buffer, Script script){
 
 // tal vez precise pasar algun dato mas...
 // desde y hasta los puedo pasar o podria fijar los limites dentro de la funcion.
+// desde vamos a pasar proximo de consumidor desde main y hasta es MAX_lecturas
+int EjecutarScriptsBuffer(Buffer buffer, int desde, int hasta){
+    //Lista_scripts = lista;
+	sem_t *sem_buffer = sem_open("sem_buffer.txt", O_CREAT, 644, 1);
+    sem_wait(sem_buffer);
+
+    while (buffer )
+    for (int i = desde; i < hasta && i < buffer->tam; i++){
+		printf("Script %d: %s\n", i, buffer->array_buffer[i]);
+        //lista += script;
+	}
+    sem_post(sem_buffer);
+    sem_close(sem_buffer);
+	return i;
+}
+// Tengo que ver cual seria el primer elemento a quitar y cuantos
+// esos datos los puedo obterner pasados por parametro o sino obtenerlos directo con el array.
+
+/*
+version anterior:
 int LeerScriptsBuffer(Buffer buffer, int desde, int hasta){
 	for (int i = desde; i < hasta && i < buffer->tam; i++){
 		printf("Script %d: %s\n", i, buffer->array_buffer[i]);
 	}
 	return 1;
 }
-// Tengo que ver cual seria el primer elemento a quitar y cuantos
-// esos datos los puedo obterner pasados por parametro o sino obtenerlos directo con el array.
+*/
+
 
 int ObtenerTamBuffer(Buffer buffer){
 	return buffer->tam;

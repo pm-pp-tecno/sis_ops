@@ -16,9 +16,6 @@
 typedef struct productor* Productor;
 
 
-
-
-
 Productor CrearProductor(Buffer buffer, Lista_scripts lista_scripts);
 
 void ActualizarBufferProductor(Productor &prod);

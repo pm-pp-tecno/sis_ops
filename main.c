@@ -21,12 +21,14 @@
 
 using namespace std;
 
+/*
+// Fabrica fue!!!
 typedef struct fabrica{
 	Productor productor;
 	Consumidor consumidor;
 	Buffer buffer;
 } Fabrica;
-
+*/
 
 
 
@@ -45,25 +47,43 @@ int main(){
     }
 
 */
+/*
     sem_t * sem_produce = sem_open("sem_produce", O_CREAT, 0644, 1);
     sem_t * sem_consume = sem_open("sem_consume", O_CREAT, 0644, 0);
+*/
 
+	sem_t *sem_prod = sem_open("sem_prod.txt", O_CREAT, 644, 1);
+	sem_t *sem_cons = sem_open("sem_cons.txt", O_CREAT, 644, 0);
+    
     Buffer buffer = CrearBuffer();
 
     Lista_scripts listado_scripts = ArmarListaScripts();
-
-    Lista_scripts iter = listado_scripts;
-    int cont = 0;
-
     Productor prod = CrearProductor(buffer, listado_scripts); 
     Consumidor cons = CrearConsumidor(buffer);
 
+    
+
+    //Lista_scripts iter = listado_scripts;
+    int cont = 0;
+
+    
+
+    // cambiar 2 condiciones
     while (!IsEmpty(iter)) {
+
+        //fork(), 1 para proceso productor y otros 2 para consumidor
+
+        // Productor
+        // cambiar iter por prod->listaScripts
         Script auxiS = ObtenerScript(iter);
         printf("Contador: %d: ", cont);
         fprintf(stdout,"%s\n",ObtenerLinea(auxiS));
         iter = Tail(iter);
         cont++;
+
+        // Consumidor
+        //Lista_scripts = EjecutarScriptsBuffer();
+
     }
 
     // Hacer fork()? y si es padre que sea un productor y un hijo consumidor? creo que no
@@ -91,6 +111,14 @@ int main(){
     // scripts = LeerBufferConsumidor(cons)
     // EjecutarScriptsConsumidor(scripts) // ejecuta y guarda las salidas
     // duerme consumidor. sem_post a productor
+
+
+    
+    // Los semaforos habria que eliminarlos al terminar el programa, calculo
+	//sem_unlink("sem_prod.txt");
+	//sem_unlink("sem_cons.txt");
+
+	//shm_unlink("/nombre");
 
 
     return 0;

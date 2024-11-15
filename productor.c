@@ -35,7 +35,7 @@ struct productor{
     int tope;
 	//Script productor; // Array circular con los scripts a colocar en buffer de memoria compartida
 	//Lista_archivos archivos; // Para ver si hay archivos por leer? En un principio manual: archivo1.txt, archivo2.txt.
-	Lista_scripts listaScripts; 
+	Lista_scripts listaScripts;
 };
 
 
@@ -116,15 +116,13 @@ void ActualizarBufferProductor(Productor &prod){
     int shm_fd;
 	int *ptr;
 	int p;
-    
-    
-	sem_t *sem_prod;
-	sem_prod = sem_open("sem_prod.txt", O_CREAT, 644, 1);
 
+    
+	sem_t *sem_prod = sem_open("sem_prod.txt", O_CREAT, 644, 1);
+	sem_t *sem_cons = sem_open("sem_cons.txt", O_CREAT, 644, 0);
+    
+    
     //sem_wait(sem_prod);
-
-	sem_t *sem_cons;
-	sem_cons = sem_open("sem_cons.txt", O_CREAT, 644, 0);
 
     //sem_wait(sem_cons);
     
@@ -156,12 +154,6 @@ void ActualizarBufferProductor(Productor &prod){
     
 	sem_close(sem_prod);
 	sem_close(sem_cons);
-
-    
-    // Los semaforos habria que eliminarlos al terminar el programa, calculo
-	//sem_unlink("sem_prod.txt");
-	//sem_unlink("sem_cons.txt");
-
 
 }
 
